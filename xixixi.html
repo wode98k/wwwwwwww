@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>猜数字游戏</title>
+		<style type="text/css">
+			.guessNumber{
+				width:400px;
+				height: 300px;
+				margin: auto;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				
+			}
+			.guessNumber h2{
+				text-align: center;
+			}
+			.guessNumber .guessC{
+				width: 252px;
+				margin: auto;
+			}
+			.guessNumber #numInput{
+				/*
+				 去掉input默认的边框、轮廓、背景
+				 * */
+				border: none;
+				outline: none;
+				border: 1px solid #000;
+				width: 186px;
+   	 			height: 30px;
+   	 			border-radius: 20px 0 0 20px;
+   	 			text-indent: 15px;
+			}
+			.guessNumber #btnGuess{
+				border: none;
+				outline: none;
+				position: relative;
+				right: 6px;
+				top: 1px;
+				border: 1px solid #000;
+				width: 50px;
+   	 			height: 34px;
+   	 		border-radius: 0px 20px 20px 0px;
+			}
+	       .tip{
+	       	position: relative;
+	       	top: 15px;
+	       	left: 80px;
+	       }
+		</style>
+	</head>
+
+	<body>			
+	
+		<div class="guessNumber">
+			<h2 class="title">猜数字游戏</h2>
+			<div class="guessC">
+				<input id="numInput" type="number" placeholder="0-10整数，6次机会" />
+				<input id="btnGuess" type="button" value="提交" onclick="uk()"/>
+			</div>
+			<div class="tip">
+				<p id="p1">剩余次数：6</p>
+				<p>猜测历史：</p>
+				<p id="p2"></p>
+			</div>
+		</div>
+	</body>
+<script type="text/javascript">
+   
+    var raint;
+	var p1=document.getElementById("p1");
+	var ci=6; 
+	var sd=document.getElementById("btnGuess");
+	var nu=document.getElementById("numInput");
+	var p2=document.getElementById("p2");
+	function ck(){
+	if(ci==6){
+	raint=parseInt(Math.random()*9)+1;	
+	console.log(raint);
+	}	
+	}
+	ck();
+	function uk(){
+	if(sd.value=="提交"){
+		
+		if(nu.value	>raint){
+			
+			p2.innerHTML +="你输入的"+nu.value+"有点大 <br\>";
+			ci=ci-1;	
+			p1.innerHTML="剩余次数:"+ci;
+		}
+		if(nu.value<raint){
+			p2.innerHTML+="你输入的"+nu.value+"有点小 <br\>";
+			ci=ci-1;
+			p1.innerHTML="剩余次数:"+ci;
+		}
+		if(nu.value==raint){
+			p2.innerHTML="哥哥好大好棒啊"
+			sd.value="重玩";
+		}
+	}else{
+		ci=6;
+		p2.innerHTML="";
+		p1.innerHTML="剩余次数:"+ci;
+		sd.value="提交";
+	}
+	if(ci==0){
+		p2.innerHTML="滚啊";
+	sd.value="重玩";
+	}
+	ck();
+	}
+	
+</script>
+</html>
