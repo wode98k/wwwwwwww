@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+	
+		</style>
+	</head>
+	<body>
+			<div id="cu">
+			<input type="number" name="numtext" id="numtext" value="" />
+			<input type="button" name="btn" id="btn" value="开始抽奖" onclick="cl()" />
+			<input type="button" name="stopbtn" id="stopbtn" value="停止" onclick="ci()"/>
+		</div>
+		<p>获奖人员:</p>
+		<p id="pt"></p>
+		<p id="iii"></p>
+		
+	</body>
+	<script type="text/javascript">
+	var btn=document.getElementById("btn");
+	var stopbtn=document.getElementById("stopbtn");
+	var ntext=document.getElementById("numtext");
+	var mt=3;
+	var pt=document.getElementById("pt");
+	var namer=new Array();
+	var nnnn=new Array();
+	var t;
+	var iii=document.getElementById("iii");
+	var b="no";
+    function iw(){
+    for(var i=0;i<354;i++){
+    	namer[i]="欧哥"+i+"号";
+    	
+    }
+    nnnn=namer;
+    }
+    iw();
+    function us(){
+    	if(ntext.value==""){
+    		mt=3;
+    	}else{
+    		mt=ntext.value;
+    	}
+    }
+	function ck(){
+		
+		var namet=new Array();
+	for (var i=0;i<mt;i++) {
+		var s=parseInt(Math.random()*namer.length);
+		namet[i]=namer[s];
+		nnnn.splice(s,1);
+	}
+	pt.innerHTML=namet.join(",");
+	}
+	function cl(){
+		us();
+		if(b=="no"){
+				  t = window.setInterval("ck()",100);
+				  b="yes";
+		}
+
+	}
+	function ci(){
+		if(b=="yes"){
+		window.clearInterval(t);	
+		b="no";
+		iii.innerHTML="没中奖的弟弟:<br>"+nnnn.join(",");
+		nnnn=namer;
+		}
+	
+	}
+	</script>
+</html>
